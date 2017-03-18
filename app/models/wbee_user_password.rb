@@ -1,0 +1,2 @@
+class WbeeUserPassword < ApplicationRecord
+end

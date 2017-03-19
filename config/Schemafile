@@ -16,6 +16,12 @@ create_table :wbee_user_passwords, force: true do |t|
   t.string :hashed_password, null: false
   t.date :start_date, null: false
   t.date :expiry_date
-  
+
+  t.timestamps
+end
+
+create_table :tasks do |t|
+  t.string :task_name
+
   t.timestamps
 end

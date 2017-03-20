@@ -1,3 +1,3 @@
 class WbeeUserPassword < ApplicationRecord
-  belongs_to :wbee_users
+  belongs_to :wbee_user
 end

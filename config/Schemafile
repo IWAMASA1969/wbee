@@ -12,7 +12,7 @@ add_index :wbee_users, :login_id, unique: true
 add_index :wbee_users, :email_lcase, unique: true
 
 create_table :wbee_user_passwords, force: true do |t|
-  t.references :wbee_users, null: false
+  t.references :wbee_user, null: false
   t.string :hashed_password, null: false
   t.date :start_date, null: false
   t.date :expiry_date

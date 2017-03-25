@@ -7,7 +7,8 @@ class Authenticator
   def authenticate(raw_password)
     must_exist_user &&
     must_exist_password_information &&
-    it_only_a_password_information
+    it_only_a_password_information &&
+    must_same_input_password_saved_password(raw_password)
   end
 
   def get_login_user(login_user)
@@ -22,7 +23,7 @@ class Authenticator
           (pw.expiry_date.nil? || pw.expiry_date > Date.today)
         }
     else
-      @login_user.wbee_user_passwords
+      nil
     end
   end
 
@@ -38,4 +39,7 @@ class Authenticator
     (@user_passwords.length == 1)
   end
 
+  def must_same_input_password_saved_password(raw_password)
+    (@user_passwords[0].hashed_password == raw_password)
+  end
 end

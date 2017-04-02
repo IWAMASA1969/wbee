@@ -1,0 +1,19 @@
+<% @title = 'Login' %>
+
+<div id="login_form">
+  <h1><%= @title %></h1>
+
+  <%= form_for @form, url: :session do |f| %>
+    <div>
+      <%= f.label :login_id, 'Login ID:' %>
+      <%= f.text_field :login_id %>
+    </div>
+    <div>
+      <%= f.label :raw_password, 'Password:' %>
+      <%= f.text_field :raw_password %>
+    </div>
+    <div>
+      <%= f.submit 'Login' %>
+    </div>
+  <% end %>
+</div>

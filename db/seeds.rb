@@ -5,45 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-tasks = [
-  'JavaScript',
-  'Ruby',
-  'RubyonRails',
-  'Chef',
-  'C',
-  'Java',
-  'PHP',
-  'Python',
-  'Pascal',
-  'Delphi',
-  'Basic',
-  'Switf',
-  'ObjectiveC',
-  'Perl',
-  'SmallTalk',
-  'Erling',
-  'Lips',
-  'Scala'
-]
+require 'factory_girl'
+Dir[Rails.root.join("spec/factories/*.rb")].each { |f| require f }
 
-tasks.each { |task|
-  Task.create(task_name: task)
-}
+Task.delete_all
+WbeeUser.delete_all
+WbeeUserPassword.delete_all
 
-wu = WbeeUser.create(
-  login_id: 'masaxyz',
-  email: 'masaxyz_labo@example.com',
-  email_lcase: 'masaxyz_labo@example.com',
-  given_name: 'gin',
-  family_name: 'iwamasa'
-)
-
-wu.wbee_user_passwords.create(
-  hashed_password: 'masaxyz',
-  start_date: Date.yesterday
-)
-
-wu.wbee_user_passwords.create(
-  hashed_password: 'masaxyz',
-  start_date: Date.tomorrow
-)
+FactoryGirl.create(:bowhead)

@@ -12,4 +12,15 @@ Task.delete_all
 WbeeUser.delete_all
 WbeeUserPassword.delete_all
 
-FactoryGirl.create(:bowhead)
+# WbeeUser
+bowhead = FactoryGirl.create(:bowhead)
+
+# Task
+sq_easy = FactoryGirl.create(:sq_easy)
+cti_avaya = FactoryGirl.create(:cti_avaya)
+
+# WbeeUserRunTask
+[sq_easy, cti_avaya].each { |task|
+  run_task = WbeeUserRunTask.new({wbee_user_id: bowhead.id, task_id: task.id})
+  run_task.save!
+}

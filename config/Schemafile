@@ -25,3 +25,10 @@ create_table :tasks do |t|
 
   t.timestamps
 end
+
+create_table :wbee_user_run_tasks, renamed_from: :user_run_tasks do |t|
+  t.references :wbee_user, null: false
+  t.references :task, null: false
+
+  t.timestamps
+end

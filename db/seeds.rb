@@ -24,6 +24,5 @@ tasks = []
 
 # WbeeUserRunTask
 tasks.each { |task|
-  run_task = WbeeUserRunTask.new({wbee_user_id: bowhead.id, task_id: task.id})
-  run_task.save!
+  FactoryGirl.create(:wbee_user_run_task, wbee_user_id: bowhead.id, task_id: task.id)
 }

@@ -11,16 +11,19 @@ Dir[Rails.root.join("spec/factories/*.rb")].each { |f| require f }
 Task.delete_all
 WbeeUser.delete_all
 WbeeUserPassword.delete_all
+WbeeUserRunTask.delete_all
 
 # WbeeUser
 bowhead = FactoryGirl.create(:bowhead)
 
 # Task
-sq_easy = FactoryGirl.create(:sq_easy)
-cti_avaya = FactoryGirl.create(:cti_avaya)
+tasks = []
+[:sq_easy, :cti_avaya].each { |task|
+  tasks << FactoryGirl.create(task)
+}
 
 # WbeeUserRunTask
-[sq_easy, cti_avaya].each { |task|
+tasks.each { |task|
   run_task = WbeeUserRunTask.new({wbee_user_id: bowhead.id, task_id: task.id})
   run_task.save!
 }

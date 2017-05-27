@@ -26,9 +26,13 @@ create_table :tasks do |t|
   t.timestamps
 end
 
+add_index :tasks, :task_name, :length => 24, unique: true
+
 create_table :wbee_user_run_tasks, renamed_from: :user_run_tasks do |t|
   t.references :wbee_user, null: false
   t.references :task, null: false
 
   t.timestamps
 end
+
+add_index :wbee_user_run_tasks, [:wbee_user_id, :task_id], unique: true

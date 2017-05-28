@@ -1,5 +1,11 @@
-<% @title = 'TOP' %>
-
-<div id="top_form">
-  <h1><%= @title %></h1>
+<div id="header">header</div>
+<div id="tasks">
+  <ul id="taskList" class="clearfix">
+    <% @tasks.each do |t| %>
+    <li id="<%= t.id %>">
+      <div><%= t.task_name %></div>
+    </li>
+    <% end %>
+  </ul>
+  <div id="memo"></div>
 </div>

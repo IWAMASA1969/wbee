@@ -26,6 +26,25 @@ FactoryGirl.define do
     end
   end
 
+  factory :bowhead_for_seeds, class: WbeeUser do |wu|
+    wu.login_id 'masaxyz'
+    wu.email 'masaxyz_labo@example.com'
+    wu.email_lcase 'masaxyz_labo@example.com'
+    wu.given_name 'gin'
+    wu.family_name 'iwamasa'
+    wu.wbee_user_passwords {[
+      build(:bowhead_pw)
+    ]}
+
+    after(:create) do |bowhead|
+      create(:sq_easy, wbee_users: [bowhead])
+      create(:cti_avaya, wbee_users: [bowhead])
+      create(:cti_exadata, wbee_users: [bowhead])
+      create(:cti_jpi, wbee_users: [bowhead])
+      create(:pmo, wbee_users: [bowhead])
+    end
+  end
+
   factory :sebi, class: WbeeUser do |wu|
     wu.login_id 'masaxyz'
     wu.email 'masaxyz_labo@example.com'

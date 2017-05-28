@@ -14,4 +14,4 @@ WbeeUserPassword.delete_all
 WbeeUserRunTask.delete_all
 
 # WbeeUser
-FactoryGirl.create(:bowhead_and_run_tasks)
+FactoryGirl.create(:bowhead_for_seeds)

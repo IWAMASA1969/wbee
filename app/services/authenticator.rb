@@ -40,6 +40,6 @@ class Authenticator
   end
 
   def must_same_input_password_saved_password(raw_password)
-    (@user_passwords[0].hashed_password == raw_password)
+    BCrypt::Password.new(@user_passwords[0].hashed_password) == raw_password
   end
 end

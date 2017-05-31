@@ -18,6 +18,11 @@ class SessionsController < BaseController
     end
   end
 
+  def destroy
+    session.delete(:wbee_user_id)
+    redirect_to :root
+  end
+
   private
   def authentication_is_successful?
     if @form.login_id.present?

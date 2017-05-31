@@ -1,0 +1,8 @@
+<span class="logo-mark">WBee</span>
+<%=
+  if current_wbee_user
+    link_to('Logout', :logout, method: :delete)
+  else
+    link_to('Login', :login)
+  end
+%>

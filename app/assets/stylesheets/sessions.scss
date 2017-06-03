@@ -1,3 +1,27 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#login_form {
+  width: 400px;
+  margin-top: 8px;
+  margin-left: 16px;
+  padding-top: 24px;
+  padding-left: 16px;
+  padding-bottom: 24px;
+  border-radius: 24px 24px 24px 24px / 24px 24px 24px 24px;
+  border: solid 4px;
+
+  form {
+    div {
+      padding-bottom: 8px;
+      label {
+        display: block;
+        padding-bottom: 4px;
+      }
+      input[type='submit'] {
+        padding: 8px 4px;
+      }
+    }
+  }
+}

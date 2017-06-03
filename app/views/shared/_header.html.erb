@@ -1,4 +1,5 @@
-<span class="logo-mark">WBee</span>
+<span class="logo">WBee</span>
+<div class="authentication">
 <%=
   if current_wbee_user
     link_to('Logout', :logout, method: :delete)
@@ -6,3 +7,4 @@
     link_to('Login', :login)
   end
 %>
+</div>

@@ -36,3 +36,13 @@ create_table :wbee_user_run_tasks do |t|
 end
 
 add_index :wbee_user_run_tasks, [:wbee_user_id, :task_id], unique: true
+
+create_table :authentication_logs do |t|
+  t.references :wbee_user, null: false
+  # login_logout_div field value is set either one of 1 or -1
+  # mean of 1 is login, mean of -1 is logout
+  t.integer :login_logout_div, null: false
+  t.boolean :auth_result, null: false, default: false
+
+  t.timestamps
+end

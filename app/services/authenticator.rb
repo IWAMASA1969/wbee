@@ -11,10 +11,12 @@ class Authenticator
     must_same_input_password_saved_password(raw_password)
   end
 
+  private
   def get_login_user(login_user)
     login_user
   end
 
+  private
   def get_user_passwords(login_user)
     if login_user.wbee_user_passwords
       @user_passwords =
@@ -27,18 +29,22 @@ class Authenticator
     end
   end
 
+  private
   def must_exist_user
     @login_user
   end
 
+  private
   def must_exist_password_information
     @user_passwords
   end
 
+  private
   def it_only_a_password_information
     (@user_passwords.length == 1)
   end
 
+  private
   def must_same_input_password_saved_password(raw_password)
     BCrypt::Password.new(@user_passwords[0].hashed_password) == raw_password
   end

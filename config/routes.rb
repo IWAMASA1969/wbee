@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'do_task/create'
+
   root 'top#index'
 
   get 'tasks/index'

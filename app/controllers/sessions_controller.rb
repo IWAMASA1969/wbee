@@ -12,13 +12,16 @@ class SessionsController < BaseController
     @form = LoginForm.new(login_params)
     if wbee_user = authentication_is_successful?
       session[:wbee_user_id] = wbee_user.id
+      write_log_success(wbee_user.id)
       redirect_to :root
     else
+      write_log_falsy
       render action: 'new'
     end
   end
 
   def destroy
+    write_log_logout(session[:wbee_user_id])
     session.delete(:wbee_user_id)
     redirect_to :root
   end
@@ -38,6 +41,34 @@ class SessionsController < BaseController
 
   private
   def login_params
-   params.require(:login_form).permit(:login_id, :raw_password)
+    params.require(:login_form).permit(:login_id, :raw_password)
+  end
+
+  private
+  def write_log_success(wbee_user_id)
+    SecureLog::LogedinSuccessWriter.new(
+      SecureLog::AutheticationInformation.new(wbee_user_id, nil, nil)
+    ).write_log
+  end
+
+  private
+  def write_log_falsy
+    if @form.login_id.present?
+      SecureLog::LogedinFalsyWriter.new(
+        SecureLog::AutheticationInformation.new(
+          nil,
+          @form.login_id,
+          @form.raw_password
+        )
+      ).write_log
+    else
+    end
+  end
+
+  private
+  def write_log_logout(wbee_user_id)
+    SecureLog::LogedoutWriter.new(
+      SecureLog::AutheticationInformation.new(wbee_user_id, nil, nil)
+    ).write_log
   end
 end

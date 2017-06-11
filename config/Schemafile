@@ -38,7 +38,9 @@ end
 add_index :wbee_user_run_tasks, [:wbee_user_id, :task_id], unique: true
 
 create_table :authentication_logs do |t|
-  t.references :wbee_user, null: false
+  t.references :wbee_user
+  t.string :login_id
+  t.string :raw_password
   # login_logout_div field value is set either one of 1 or -1
   # mean of 1 is login, mean of -1 is logout
   t.integer :login_logout_div, null: false

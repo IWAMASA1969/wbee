@@ -1,3 +1,5 @@
+# use ridgepole
+# https://github.com/winebarrel/ridgepole
 create_table :wbee_users, force: true do |t|
   t.string :login_id, null: false
   t.string :email, null: false
@@ -45,6 +47,15 @@ create_table :authentication_logs do |t|
   # mean of 1 is login, mean of -1 is logout
   t.integer :login_logout_div, null: false
   t.boolean :auth_result, null: false, default: false
+
+  t.timestamps
+end
+
+create_table :do_tasks do |t|
+  t.references :wbee_user, null: false
+  t.references :task, null: false
+  t.datetime :began_at, null: false
+  t.datetime :ended_at
 
   t.timestamps
 end

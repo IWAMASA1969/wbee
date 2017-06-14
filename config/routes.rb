@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'do_task/create'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'top#index'
 
@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get 'login' => 'sessions#new', as: :login
   post 'login' => 'sessions#create', as: :session
   delete 'logout' => 'sessions#destroy', as: :logout
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  post 'do_task' => 'do_task#create', as: :do_task
 end

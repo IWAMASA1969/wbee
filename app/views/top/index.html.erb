@@ -2,7 +2,11 @@
   <ul id="taskList" class="clearfix">
     <% @tasks.each do |t| %>
     <li id="<%= t.id %>">
-      <div><%= t.task_name %></div>
+      <div>
+        <%=
+        link_to(t.task_name, do_task_path(do_task: {task_id: t.id}), method: :post)
+        %>
+      </div>
     </li>
     <% end %>
   </ul>
